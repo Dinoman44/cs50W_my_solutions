@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Add listing</h2>
+    <br>
+    <div class="form-holder">
+        <form method="post" action="{% url 'add_listing' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <input autofocus required class="form-control" name="item_name" placeholder="Name of item">
+            </div>
+            <p>Description of item:</p>
+            <textarea name="item_descr" rows="4" style="border-radius: 10px; width: 500px"></textarea>
+            <div class="radio-group">
+                {% for category in categories %} 
+                    <label class="radio-label">
+                        <input type="radio" name="category" id="category" value="{{ category }}">
+                        <span class="inner-label">{{ category }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+            <br><br>
+            <div class="form-group">
+                <input autofocus required class="form-control" name="base_price" placeholder="Base price(in dollars)" type="number" step="0.01" min="0">
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Add a picture:</label><br>
+                <input class="img" type="file" id="formFile" name="img" accept="image/*">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Add listing">
+        </form>
+    </div>
+{% endblock %}

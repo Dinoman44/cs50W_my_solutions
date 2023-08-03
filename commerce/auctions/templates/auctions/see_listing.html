@@ -1,0 +1,86 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    Auctions | {{ listing.item_name }}
+{% endblock %}
+
+{% block body %}
+    {% if winner %}
+        {% if winner == user %}
+            <div class="alert alert-success" role="alert" style="text-align: center; width: 400px; margin: auto;">Congratulations! You won the auction!</div><br>
+        {% else %} 
+            <div class="alert alert-info" role="alert" style="text-align: center; width: 400px; margin: auto;">This auction has been closed</div><br>
+        {% endif %}
+    {% endif %}
+    <div class="listing">
+        <div>
+            <h1>{{ listing.item_name }}</h1>
+            <p></p>
+            <h4 style="color: #203323;">{{ listing.item_description }}</h4>
+            <p></p>
+            <h4>Category: {{ listing.category }}</h4>
+            <p></p>
+            <h4>Current price: ${{ listing.current_price }}</h4>
+            <p style="font-style: italic;">Put up for auction on {{ listing.sell_date }} UTC by {{ listing.seller }}</p>
+            {% if listing.is_active and listing.seller != user %}
+                <button onclick="showbidform();" class="btn btn-primary" style="margin: auto; width: 70px; font-weight: 700; font-size: large; text-align: center; background-color: #3fc189;">Bid</button>
+            {% elif listing.is_active and listing.seller == user %}
+                <button class="btn btn-primary disabled" style="margin: auto; width: 250px; font-weight: 700; font-size: large; text-align: center; background-color: #3fc189;">The seller cannot bid</button>
+            {% else %}
+                <button class="btn btn-primary disabled" style="margin: auto; width: 200px; font-weight: 700; font-size: large; text-align: center; background-color: #3fc189;">Bidding has closed</button>
+            {% endif %}
+            {% if watching %} 
+                <a href="{% url 'removefromwatchlist' listing.listing_id %}" class="btn btn-secondary" style="margin: auto; width: 250px; font-weight: 700; font-size: large; text-align: center; background-color: rgb(184, 105, 45);">Remove from watchlist</a>
+            {% else %}
+                <a href="{% url 'add2watchlist' listing.listing_id %}" class="btn btn-secondary" style="margin: auto; width: 200px; font-weight: 700; font-size: large; text-align: center; background-color: rgb(45, 94, 184);">Add to watchlist</a>
+            {% endif %}
+            {% if user == listing.seller and listing.is_active %}
+                <a class="btn btn-warning" href="{% url 'close_auction' listing.listing_id %}" style="font-weight: 700; font-size: large; color: white;">Close auction</a>
+            {% endif %}
+            <br><br>
+            {% if listing.is_active and listing.seller != user %}
+                <div class="form-holder">
+                    <form method="post" action="/see_listing/{{ listing.listing_id }}" id="bidform" hidden style="text-align: center;">
+                        <div class="form-group" style="width: 30%;">
+                            <input type="number" min="{{ listing.current_price }}" class="form-control" name="bid">
+                            <input name="listing_id" value="{{ listing.listing_id }}" hidden>
+                        </div>
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-secondary" value="Enter Bid">
+                    </form>
+                    <script>
+                        function showbidform() {
+                            document.getElementById("bidform").hidden = false;
+                        }
+                    </script>
+                </div>
+            {% endif %}
+            <br>
+        </div>
+        <div><img src="/{{ img }}" alt="{{ listing.item_name }}" class="img-fluid rounded-start"></div>
+    </div>
+    <br><br>
+    <div class="form-holder">
+        <h4>Write your comment...</h4>
+        <form method="post" action="/comment/{{ listing.listing_id }}">
+            <div class="form-group">
+                <textarea name="comment" id="comment" style="width: 100%;" rows="3"></textarea>
+            </div>
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" style="background-color: #5220c6; border-color: #892394; border-radius: 0px;" value="Comment">
+        </form>
+    </div>
+    <br>
+    <div class="comments">
+        <h3 style="text-align: center;">Comments:</h3>
+        {% for comment in comments %} 
+            <div class="comment">
+                <p>{{ comment.comment_txt }}</p>
+                <p style="font-style: italic; text-align: right; font-size: small;">- {{ comment.commenter }}, {{ comment.commented_when }} UTC </p>
+            </div>
+        {% empty %}
+            <p>No comments yet</p>
+        {% endfor %}
+    </div>
+    <br><br>
+{% endblock %}

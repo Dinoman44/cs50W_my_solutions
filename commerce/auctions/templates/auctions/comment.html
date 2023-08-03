@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    Auctions | {{ listing.item_name }}
+{% endblock %}
+
+{% block body %}
+    <div class="listing">
+        <h1>{{ listing.item_name }}</h1>
+        <p></p>
+        <h4 style="color: #203323;">{{ listing.item_description }}</h4>
+        <p></p>
+        <h4>Category: {{ listing.category }}</h4>
+        <p></p>
+        <h4>Current price: ${{ listing.current_price }}</h4>
+        <p style="font-style: italic;">Put up for auction on {{ listing.sell_date }} UTC</p>
+        <br><br>
+        <img src="{{ img }}" alt="{{ listing.item_name }}" class="img-fluid rounded-start">
+    </div>
+    <br><br>
+    <div class="form-holder" style="text-align: left;">
+        <h5 style="margin-left: 100px;">Write your comment...</h5>
+        <form method="post" action="{% url 'see_listing' %}">
+            <div class="form-group">
+                <textarea name="comment" id="comment" style="width: 100%;" rows="3"></textarea>
+            </div>
+        </form>
+        <div class="comments">
+            <h3 style="margin-left: 100px;">Comments:</h3>
+        </div> 
+        <div class="comments">
+            {% for comment in comments %} 
+                <div class="comment">{{ comment }}</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

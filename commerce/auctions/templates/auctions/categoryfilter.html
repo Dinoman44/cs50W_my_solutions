@@ -1,0 +1,36 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h4 style="color: #212b45;">Filter by category:</h4>
+    {% for category in categories %} 
+        <a class="category-btn" href="{% url 'category' category %}">{{ category }}</a>
+    {% endfor %}
+    <br><br>
+    <h2>Active Listings</h2>
+    <h4 style="color: #212b45;">Filtered by: {{ category }}</h4>
+    <div class="row" style="width: 99%; margin: auto;">
+        {% for item_name, item_description, seller, current_price, sell_date, listing_id, img in listings %}
+            <div class="col-sm-12">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4" style="max-width: fit-content;">
+                            <img src="/{{ img }}" alt="{{ item_name }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title">{{ item_name }}</h2>
+                                <p class="card-text">{{ item_description }}</p>
+                                <p class="card-text">By: {{ seller }}</p>
+                                <p class="card-text"><b>Current bid: </b>${{ current_price }}</p>
+                                <h6 class="card-title">Put up for auction on {{ sell_date }} UTC</h6>
+                                <a class="btn btn-primary" href="{% url 'see_listing' listing_id %}">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No active listings in this category</p>
+        {% endfor %}
+    </div>
+{% endblock %}
