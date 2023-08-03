@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block body %}
+    <h1>Search results for: {{ query }}</h1>
+    <ul>
+        {% for option in options %}
+            <li><a href="/wiki/{{ option }}">{{ option }}</a></li>
+        {% empty %}
+            <p><i>Your query did not match any results</i></p>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

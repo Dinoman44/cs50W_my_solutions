@@ -1,0 +1,16 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    {{ text|safe }}
+    {% if found %}
+    <form action="/edit">
+        <input type="text" value="{{ title }}" name="title" hidden>
+        <textarea name="text" hidden>{{ raw_text }}</textarea>
+        <input type="submit" value="Edit page">
+    </form>
+    {% endif %}
+{% endblock %}
