@@ -1,0 +1,83 @@
+body {
+    min-height: 750px;
+    background-color: #222;
+    color: #ddd;
+    font-family: Verdana;
+}
+
+.body {
+    padding: 15px;
+}
+
+p {
+    font-size: 20px;
+    color: #ccc;
+}
+
+table {
+    margin: auto;
+    text-align: center;
+    width: 30%;
+}
+
+form {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.like-btn {
+    border: none; 
+    background-color: inherit;
+    color: white;
+    font-size: 30px;
+}
+
+.post-card {
+    border: solid;
+    border-radius: 2px;
+    border-color: blue;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.unfollow-btn {
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: blue;
+    background-color: #ddd;
+    padding: 5px 10px 5px 10px;
+    color: blue;
+}
+
+.follow-btn {
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #ddd;
+    background-color: blue;
+    padding: 5px 10px 5px 10px;
+    color: #ddd;
+}
+
+.nofollow-btn {
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: blue;
+    background-color: #ddd;
+    padding: 5px 10px 5px 10px;
+    color: blue;
+}
+
+
+.page-link {
+    background-color: #222;
+}
+
+.page-link:hover {
+    background-color: #000;
+    color: #008eff
+}
