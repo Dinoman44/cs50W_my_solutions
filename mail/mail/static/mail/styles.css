@@ -1,0 +1,26 @@
+textarea {
+    min-height: 400px;
+}
+
+td {
+    padding: 5px;
+}
+
+tr {
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+}
+
+.email-read {
+    background-color: #dddddd;
+}
+
+.email-unread {
+    background-color: white;
+}
+
+.timestamp {
+    text-align: right;
+    color: #898989;
+}
