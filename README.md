@@ -16,4 +16,4 @@ Design a front-end for an email client that makes API calls to send and receive 
 Design a Twitter-like social network website for making posts and following users. Full description [here](https://cs50.harvard.edu/web/2020/projects/4/network/)
 
 ### Capstone project: HealthPizza
-Designing and implementing a web application of your own with Python and JavaScript. Full description [here](https://cs50.harvard.edu/web/2020/projects/final/capstone/). README file about my project is available within the capstone directory
+Designing and implementing a web application of your own with Python and JavaScript. Full description [here](https://cs50.harvard.edu/web/2020/projects/final/capstone/). README file about my project is available within the [capstone directory](https://github.com/Dinoman44/cs50W_my_solutions/tree/main/capstone)
