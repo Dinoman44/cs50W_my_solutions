@@ -1,0 +1,86 @@
+body
+{
+    font-family: arial, sans-serif;
+    font-size: 12px;
+}
+
+.topnavbar
+{
+    text-align: right;
+    background-color: #f1f1f1;
+    height: 45px;
+    width: 100%;
+    padding-top: 14px;
+    padding-right: 20px;
+}
+
+a
+{
+    padding-bottom: 22px;
+    font-size: 18px;
+    color: #000000;
+    align-content: flex;
+    text-decoration: none;
+}
+
+.directions
+{
+    color: #555555;
+    font-size: 11px;
+    width: 370px;
+}
+
+.examples
+{
+    color: #666666;
+    font-family: monospace;
+}
+
+th
+{
+    font-size: 16px;
+    text-align: left;
+    font-weight: normal;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 20px;
+    padding-left: 30px;
+}
+
+label
+{
+    color: #d93025;
+    padding-left: 30px;
+    font-size: 20px
+}
+
+td
+{
+    font-size: 13px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 30px;
+}
+
+input
+{
+    border-radius: 1px;
+    border: 1px solid #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+    padding: 1px 8px;
+    height: 25px;
+    width: 562px;
+}
+
+.button
+{
+    background-color: #357ae8;
+    border: 1px solid #2f5bb7;
+    height: 30px;
+    width: 120px;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    border-radius: 2px;
+    text-align: center;
+}
