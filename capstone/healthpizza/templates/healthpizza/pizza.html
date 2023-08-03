@@ -1,0 +1,37 @@
+{% extends "healthpizza/layout.html" %}
+
+{% block title %}
+    Your Pizza
+{% endblock %}
+
+{% block body %}
+    <div class="text" style="text-align: center;">
+        <h3>Disorder: <a href="/disorder/{{ disease.simple }}">{{ disease.name }}</a></h3>
+        <h3>Nutrient required: <a href="/nutrient/{{ nutrient.simple }}">{{ nutrient.name }}</a></h3>
+        <h2 style="color: #067aff; font-variant: small-caps;">Recommended toppings</h2>
+        {% for topping in best_toppings %}
+            <hr class="dd23j">
+            <p>{{ topping.0.name }}, {{ topping.1 }} g</p>
+            <p>Gives {{ topping.2 }} {{ topping.3 }} of {{ nutrient.name }}</p>
+        {% endfor %}
+        <br><hr class="dd23j" style="width: 75%;">
+        <p>Total {{ nutrient.name }} content in pizza: {{ total_nutr }} {{ nutrient.unit_of_measurement }}</p>
+        <p>Daily Recommended Intake(DRI): {{ nutrient.daily_min_intake }} to {{ nutrient.daily_max_intake }} {{ nutrient.unit_of_measurement }}</p>
+        <p>1 pizza contains {{ percentage_intake }} % of your DRI</p>
+        {% if warning %}
+            <p style="color: rgb(128, 17, 17); background-color: rgb(214, 119, 119); width: fit-content; text-align: center; margin: auto; padding: 5px; border-radius: 5px;">{{ warning }}</p>
+        {% endif %}
+        <br>
+        <hr class="dd23j" style="width: 75%">
+        <br>
+        <h3 style="color: #067aff">Alternative toppings</h3>
+        <hr class="dd23j">
+        {% for topping in toppings %}
+            <p>{{ topping.0.name }}, {{ topping.1 }} g</p>
+            <p>Gives {{ topping.2 }} {{ topping.3 }} of {{ nutrient.name }}</p>
+            <hr class="dd23j">
+        {% empty %}
+            <p>No other toppings fit your dietary requirements</p>
+        {% endfor %}
+    </div>
+{% endblock %}

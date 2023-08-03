@@ -1,0 +1,31 @@
+{% extends "healthpizza/layout.html" %}
+
+{% block title %}Request addition{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center;">Request an addition</h1>
+
+    {% if message %}
+        <h2 style="text-align: center;">{{ message }}</h2>
+    {% endif %}
+
+    <form action="{% url 'request info' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" autofocus name="edit name" placeholder="Nutrient/Disorder/Food to add">
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="descr" placeholder="Short description of the item" style="height: 100px;"></textarea>
+        </div>
+        <p>The item you are requesting us to add is a...</p>
+        <div class="form-group">
+            <input type="radio" name="type" id="nutrient" value="nutrient">
+            <label for="nutrient">Nutrient</label><br><br>
+            <input type="radio" name="type" id="disorder" value="disorder">
+            <label for="disorder">Disorder</label><br><br>
+            <input type="radio" name="type" id="food" value="food">
+            <label for="food">Food</label>
+        </div>
+        <input class="form-submit-btn" type="submit" value="Send request">
+    </form>
+{% endblock %}

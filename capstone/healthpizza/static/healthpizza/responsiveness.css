@@ -1,0 +1,84 @@
+/* Responsiveness */
+@media screen and (max-width: 1000px) {
+    .front-page-info {
+        width: 80%;
+        margin-left: 17%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .front-page-info {
+        width: 100%;
+        margin-left: 1%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    #widescreen-navbar {
+        display: none;
+    }
+    #smolscreen-navbar {
+        display: inline;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #disclaimer {
+        font-size: 2vh;
+    }
+}
+
+@media screen and (max-width: 416px) {
+    .nav-link {
+        font-size: 13px;
+    }
+    #cards-holder {
+        padding-left: 0px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    #site-logo {
+        font-size: 25px;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .disease-card {
+        max-width: 400px;
+        margin: 0px 1vw 20px 1vw;
+    }
+}
+
+@media screen and (max-width: 725px) {
+    .disease-card {
+        margin: auto;
+        margin-top: 20px;
+    }
+    #consent-form {
+        margin-left: -20vw;
+        width: 80vw;
+    }
+    #final-submit-btn {
+        margin-left: 35vw;
+    }
+    #phone-footer {
+        display: inline;
+    }
+    .widescreen-footer {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1144px) {
+    .disease-card {
+        margin: auto;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    #veg-label {
+        font-size: 12px;
+    }
+}

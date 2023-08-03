@@ -1,0 +1,25 @@
+{% extends "healthpizza/layout.html" %}
+
+{% block title %}Nutrient catalog{% endblock %}
+
+{% block body %}
+    <div id="cards-holder">
+        {% for food in foods %}
+            <div class="disease-card">
+                <h2>{{ food.0.name }}</h2>
+                <hr>
+                <p>Type: {{ food.0.type }}</p>
+                <p>Allergens: {{ food.0.allergen_type }}</p>
+                <p><i>Database id: {{ food.0.simple }}</i></p>
+                <hr>
+                <h3>Nutrient info</h3>
+                {% for nutr in food.1 %}
+                    <hr>
+                    <h4><a href="/nutrient/{{ nutr.nutrient.simple }}">{{ nutr.nutrient.name }}</a></h4>
+                    <h5>{{ nutr.content_per_100_gram }} {{ nutr.unit_of_measurement }} per 100 gram serving</h5>
+                    <p>DRI of {{ nutr.nutrient.name }} is {{nutr.nutrient.daily_min_intake}} to {{ nutr.nutrient.daily_max_intake }} {{ nutr.nutrient.unit_of_measurement }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

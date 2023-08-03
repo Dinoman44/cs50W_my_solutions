@@ -1,0 +1,18 @@
+{% extends "healthpizza/layout.html" %}
+
+{% block title %}Disorder catalog{% endblock %}
+
+{% block body %}
+    <div id="cards-holder">
+        {% for disease in diseases %}
+            <div class="disease-card">
+                <h2>{{ disease.name }}</h2>
+                <hr>
+                <p><i>Database id: {{ disease.simple }}</i></p>
+                <hr>
+                <a href="/disorder/{{ disease.simple }}">More info</a>
+                <p>Relevant nutrient: <a href="/nutrient/{{ disease.relevant_nutrient.simple }}">{{disease.relevant_nutrient.name }}</a></p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

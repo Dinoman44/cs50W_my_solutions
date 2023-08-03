@@ -1,0 +1,64 @@
+{% extends "healthpizza/layout.html" %} 
+
+{% block title %}Preferences{% endblock %}
+
+{% block body %}
+    <script src="/static/healthpizza/js/pizza_prefs.js"></script>
+    <form id="form1">
+        <h3>Any Diet preferences?</h3>
+        <div class="form-group">
+            <input type="radio" name="is veg" value="False" id="non-veg" checked="">
+            <label for="non-veg">None</label><br><br>
+            <input type="radio" name="is veg" value="True" id="veg">
+            <label for="veg" id="veg-label">Vegetarian/Vegan</label>
+        </div>
+        <hr>
+        <h3>Any allergies?</h3>
+        <div class="form-group">
+            <input type="checkbox" name="allergens" id="no-allergies" value="none" checked="">
+            <label for="no-allergies">None</label><br><br>
+            <input type="checkbox" name="allergens" id="dairy" value="lactose">
+            <label for="dairy">Lactose-intolerance</label><br><br>
+            <input type="checkbox" name="allergens" id="fish" value="fish">
+            <label for="fish">Fish products</label><br><br>
+            <input type="checkbox" name="allergens" id="spice" value="spice">
+            <label for="spice">Spices</label>
+        </div>        
+        <hr>
+
+        <div id="consent-form" hidden="">
+            <p id="disclaimer">DISCLAIMER!</p>
+            <p>By checking the option below, you demonstrate that you understand that:</p>
+            <p>(a) Pizzas are <span class="red">not generally healthy</span> (due to high sugar and fat content)</p>
+            <p>(b) We are <span class="red">not certified medical professionals</span>, and cannot diagnose allergies or disorders for you</p>
+            <p>(c) We are not responsible for any damage caused during the pizza-making process</p>
+            <p>(d) Precise nutrient requirements <span class="green">differ for each person,</span> but we only use generalised DRI values;
+                we don't adjust for medical conditions or other body states (such as pregnancy)
+            </p>
+                In case of any medical queries, please consult your doctor/general practitioner
+
+            <div class="form-group">
+                <input type="radio" name="consent" id="consent_check" value="consent" required>
+                <label>Yes, I understand and agree to the above terms</label>
+            </div>
+        </div>
+
+        <button hidden="" id="submit-btn" type="submit" class="form-submit-btn">Next</button>
+    </form>
+    <hr id="hr">
+    <button style="margin-left: 48%;" id="next" class="form-submit-btn">Next</button>
+    <div id="final" hidden="">
+        <h3>Final choices:</h3>
+        <p id="finalchoices">f</p>
+        <form id="form2" action="{% url 'pizza prefs' %}" method="post" style="width: 70%;">
+            {% csrf_token %}
+            <input id="input-isveg" name="isveg">
+            <input id="input-allergies" name="allergies">
+            <input id="input-nutrient" name="nutrient" value="{{ nutrient }}">
+        </form>
+        <button id="final-submit-btn" class="form-submit-btn">Confirm</button>
+        <p id="wait">Wait, go back</p>
+    </div>
+{% endblock %}
+
+

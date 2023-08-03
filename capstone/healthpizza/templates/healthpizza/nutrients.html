@@ -1,0 +1,17 @@
+{% extends "healthpizza/layout.html" %}
+
+{% block title %}Nutrient catalog{% endblock %}
+
+{% block body %}
+    <div id="cards-holder">
+        {% for nutrient in nutrients %}
+            <div class="disease-card">
+                <h2>{{ nutrient.name }}</h2>
+                <hr>
+                <p><i>Database id: {{ nutrient.simple }}</i></p>
+                <hr>
+                <p><a href="/nutrient/{{ nutrient.simple }}">More info</a></p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

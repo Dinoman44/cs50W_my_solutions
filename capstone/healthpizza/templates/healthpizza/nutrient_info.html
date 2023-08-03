@@ -1,0 +1,41 @@
+{% extends "healthpizza/layout.html" %}
+
+{% block title %}Info | {{ nutrient.name }}{% endblock %}
+
+{% block body %}
+    {% if mistake %}
+        <script src="/static/healthpizza/js/n-d-info.js"></script>
+        <div style="text-align: center">
+            <h4>Hang on a minute!</h4>
+            <p>We don't have information on the nutrient you're looking for!</p>
+            <p id="pbq">What could be the issue?</p>
+            <div id="solution" hidden="">
+                <ul>
+                    <li>You may have misspelled the name of the nutrient. Try one of the following:</li>
+                    <br>
+                    <li>You may be searching for the name of a disease under the nutrient category by accident.<br>
+                        Try <a href="/disorder/{{ requested_name }}">this link</a> instead
+                    </li>
+                    <br>
+                    <li>We may not have a page on the nutrient you requested. <br>
+                        If you think we should, <a href="/request_info">you can ask for it to be made.</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% else %}
+        <div class="info-card">
+            <h1>{{ nutrient.name }}</h1>
+            <hr>
+            <h4>Type of nutrient: {{ nutrient.type.name }}</h4>
+            <hr>
+            <p>{{ nutrient_details|safe }}</p>
+            <hr>
+            <form action="{% url 'nutrient_info' nutrient.simple %}" method="post">
+                {% csrf_token %}
+                <input hidden="" value="{{ nutrient.simple }}" name="nutrient">
+                <button class="form-submit-btn" id="pizza-gen-btn">Generate Pizza!</button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

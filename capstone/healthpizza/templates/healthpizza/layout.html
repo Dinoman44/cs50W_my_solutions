@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Nutri-pizza | {% block title %}{% endblock %}</title>
+        <link href="{% static 'healthpizza/styles.css' %}" rel="stylesheet">
+        <link href="{% static 'healthpizza/responsiveness.css' %}" rel="stylesheet">
+        <link href="{% static 'healthpizza/favicon.ico' %}" rel="icon" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="{% static 'healthpizza/js/main.js' %}"></script>
+    </head>
+    <body>
+        <nav>
+            <a class="nav-image left"><img id="logo-png" src="{% static 'healthpizza/logo.png' %}"></a>
+            <a class="nav-link left" id="site-logo" href="{% url 'index' %}">
+                <span id="nutri">Nutri</span>-<span id="pizza">Pizza</span>
+            </a>
+            <div id="widescreen-navbar">
+                {% if user.is_authenticated %}
+                    <a class="nav-link left" href="{% url 'disease list' %}">Disorders</a>
+                    <a class="nav-link left" href="{% url 'nutrient list' %}">Nutrients</a>
+                    <a class="nav-link left" href="{% url 'food list' %}">Foods</a>
+                    <a class="nav-link left" href="{% url 'request info' %}">Request an addition</a>
+                    <a class="nav-link right" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a class="nav-link right" href="{% url 'login' %}">Login</a>
+                    <a class="nav-link right" href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </div>
+        </nav>
+        <hr>
+        <div id="smolscreen-navbar">
+            {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'disease list' %}">Disorders</a>
+                <a class="nav-link" href="{% url 'nutrient list' %}">Nutrients</a>
+                <a class="nav-link" href="{% url 'food list' %}">Foods</a>
+                <a class="nav-link" href="{% url 'request info' %}">Request an addition</a>
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            {% endif %}
+            <hr>
+        </div>
+        <div class="body">
+            {% block body %}{% endblock %}
+        </div>
+        <footer>
+            <table>
+                <row>
+                    <td style="width: 60%;">
+                        <div>
+                            <p id="disclaimer">DISCLAIMER!</p>
+                            <p>(a) Pizzas, especially those from fast food places, 
+                                are <span class="red">not generally healthy</span>
+                                (due to high carbohydrate and fat content)
+                            </p>
+                            <p>(b) We are <span class="red">not certified medical professionals</span>,
+                                and cannot diagnose allergies or disorders for you
+                            </p>
+                            <p>(c) We are not responsible for any damage caused during the 
+                                pizza-making process
+                            </p>
+                            <p>(d) Precise nutrient requirements 
+                                <span class="green">differ for each person</span>,
+                                but we only use generalised DRI values;
+                                we don't adjust for medical conditions or other body states 
+                                (such as pregnancy)
+                            </p>
+                                In case of any medical queries, please consult your doctor/general practitioner
+                        </div>
+                    </td>
+                    <td style="padding-left: 5vw;" class="widescreen-footer">
+                        Nutrient data from Health Promotion Board's 
+                        <a href="https://focos.hpb.gov.sg/eservices/ENCF/">ENCF</a>
+                    </td>
+                    <td style="padding-left: 5vw;" class="widescreen-footer">
+                        <div id="footer-links" style="text-align: right;">
+                            {% if user.is_authenticated %}
+                                <p><a href="{% url 'disease list' %}">Disorders</a></p>
+                                <p><a href="{% url 'nutrient list' %}">Nutrients</a></p>
+                                <p><a href="{% url 'food list' %}">Foods</a></p>
+                                <p><a href="{% url 'logout' %}">Logout</a></p>
+                            {% else %}
+                                <p><a href="{% url 'login' %}">Login</a></p>
+                                <p><a href="{% url 'register' %}">Register</a></p>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td id="phone-footer">
+                        <div style="margin-left: 5vw;">
+                            <br><br><br><br><br><br>
+                            Nutrient data from Health Promotion Board's 
+                            <a href="https://focos.hpb.gov.sg/eservices/ENCF/">ENCF</a>
+                            <br><hr>
+                            <div id="footer-links" style="text-align: left;">
+                                {% if user.is_authenticated %}
+                                    <p><a href="{% url 'disease list' %}">Disorders</a></p>
+                                    <p><a href="{% url 'nutrient list' %}">Nutrients</a></p>
+                                    <p><a href="{% url 'food list' %}">Foods</a></p>
+                                    <p><a href="{% url 'logout' %}">Logout</a></p>
+                                {% else %}
+                                    <p><a href="{% url 'login' %}">Login</a></p>
+                                    <p><a href="{% url 'register' %}">Register</a></p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </td>
+                </row>
+            </table>
+        </footer>
+    </body>
+</html>

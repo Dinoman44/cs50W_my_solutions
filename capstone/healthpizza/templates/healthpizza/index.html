@@ -1,0 +1,40 @@
+{% extends "healthpizza/layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="front-page-info">
+        <h2>You are what you eat</h2>
+        <p>
+            Throughout the world, as diets become dominated with oily or sugary foods and fast food, 
+            essential nutrients including vitamins and minerals are decreasingly consumed.
+            These nutrients perform critical functions throughout the body, from improving eyesight to 
+            keeping the immune system healthy.
+        </p>
+    </div>
+    <div class="front-page-info" id="left-info">
+        <h2>The problem</h2>
+        <p>
+            Diseases and disorders caused due to improper diets are becoming more frequent across the world,
+            and especially in children. These problems range from obesity and diabetes due to overconsumption 
+            of sugar to more severe cases of stunted growth or underdevelopment of the eyes.
+            The majority of these problems can be prevented if we have proper balanced diets with good amounts
+            of vitamins and minerals. So why don't we? Well, people find pizzas and hamburgers to be 
+            more appetizing than vegetable soups and salads.
+        </p>
+    </div>
+    <div class="front-page-info">
+        <h2>The solution</h2>
+        <p>
+            If people like pizzas so much, why not make them healthier? Here, you can get a list of toppings
+            that can be added to a pizza and provide a particular nutrient! And the toppings will be filtered
+            based on your dietary preferences too. The idea is to suggest people to look for pizzas with 
+            such toppings. Or better yet, make such a pizza yourself as a healthier option! 
+            Fast food places add lots of oil and use flour with greater amounts of carbohydrates, 
+            and you usually can't choose the exact toppings and amounts.
+        </p>
+    </div>
+    <div style="width: 5%; margin: auto;">
+        <button onclick="location.href='/nutrient-list';" class="form-submit-btn">Explore!</button>
+    </div>
+{% endblock %}
